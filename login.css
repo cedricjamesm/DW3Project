@@ -79,9 +79,18 @@ body {
     border-radius: 3px;
     cursor: pointer;
 }
-
+/* forgot password button
+.lf--forgot {
+    background-color: #e73232;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
 /* Styling on hover for buttons */
 .lf--login:hover,
-.lf--register:hover {
+.lf--register:hover, 
+.lf--forgot {
     opacity: 0.8;
 }

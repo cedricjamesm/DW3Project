@@ -1,53 +1,49 @@
+
 <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kidsGames";
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "kidsGames"; 
+    $conn = new mysqli($servername, $username, $password, $database);
 
-
-$conn = new mysqli($servername, $username, $password);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$conn->select_db($database);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $username = $_POST['username'];
-    $new_password = $_POST['new_password'];
-
-    
-    $sql_check_user = "SELECT * FROM player WHERE userName = '$username'";
-    $result_check_user = $conn->query($sql_check_user);
-
-    
-    if ($result_check_user->num_rows > 0) {
-        
-        $sql_update_password = "UPDATE authenticator SET passCode = ? WHERE registrationOrder = (
-            SELECT registrationOrder FROM player WHERE userName = ?
-        )";
-
-        $stmt = $conn->prepare($sql_update_password);
-
-        $stmt->bind_param("ss", $new_password_hash, $username);
-
-        $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
-
-        if ($stmt->execute()) {
-            echo "Password updated successfully";
-        } else {
-            echo "Error updating password: " . $conn->error;
-        }
-
-        $stmt->close();
-        
-    } else {
-        echo "User not found";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-}
 
-$conn->close();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['changepassword'])) {
+            $username = $_POST['username'];
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $newPassword = $_POST['newPassword'];
+            $confirmPassword = $_POST['confirmPassword'];
+
+            if ($newPassword === $confirmPassword) {
+                $sql_check_user = "SELECT * FROM player WHERE userName = '$username' AND fName = '$firstName' AND lName = '$lastName'";
+                $result_check_user = $conn->query($sql_check_user);
+
+                if ($result_check_user->num_rows > 0) {
+                    $hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
+                    $sql_update_password = "UPDATE authenticator SET passCode = '$hashed_password' WHERE registrationOrder = (
+                        SELECT registrationOrder FROM player WHERE userName = '$username'
+                    )";
+
+                    if ($conn->query($sql_update_password) === TRUE) {
+                        echo "Password updated successfully";
+                    } else {
+                        echo "Error updating password: " . $conn->error;
+                    }
+                } else {
+                    echo "User not found";
+                }
+            } else {
+                echo "Please make sure the passwords match!";
+            }
+        } elseif (isset($_POST['login'])) {
+            header("Location: login.php");
+            exit();
+        }
+    }
+
+    $conn->close();

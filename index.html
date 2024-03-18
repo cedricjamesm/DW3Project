@@ -1,1 +1,27 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Final Project</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<header id="header">
+    <p>WEB SERVER APPLICATION DEVELOPMENT 1 / Final Project / Team 2</p>
+</header>
+<form class="login-form" method="POST" action="login.php"> 
+    <div class="flex-row">
+        <label class="lf--label" for="username">Username: </label>
+        <input id="username" class='lf--input' placeholder='Username' type='text' name="username">
+    </div>
+    <div class="flex-row">
+        <label class="lf--label" for="password">Password: </label>
+        <input id="password" class='lf--input' placeholder='Password' type='password' name="password">
+    </div>
+    <div class='button'>
+        <input class='lf--login' type='submit' value='Login'>
+        <input class='lf--register' type='submit' value='Register'>
+    </div>
+</form>
+</body>
+</html>

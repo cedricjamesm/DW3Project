@@ -7,23 +7,46 @@
 </head>
 <body class="wrapper">
     <header id="header">
+        <p>User Registration</p>
     </header>
-    <form class="signup-form" method="POST" action="signup.php"> 
+    <form class="signup-form" method="POST" action="signup.php" onkeyup="validatePassword()"> 
         <div class="flex-row">
             <label class="lf--label" for="username">Username: </label>
-            <input id="username" class='lf--input' placeholder='Username' type='text' name="username">
+            <input id="username" class='lf--input' placeholder='Username' type='text' name="username" required>
+        </div>
+        <div class="flex-row">
+            <label class="lf--label" for="firstName">First Name:</label>
+            <input class="lf--input" type="text" placeholder= "First Name" id="firstName" name="firstName" required>
+        </div>
+        <div class="flex-row">
+            <label class="lf--label" for="lastName">Last Name:</label>
+            <input class="lf--input" type="text" placeholder="last Name" id="lastName" name="lastName" required>
         </div>
         <div class="flex-row">
             <label class="lf--label" for="password">Password: </label>
-            <input id="password" class='lf--input' placeholder='Password' type='password' name="password">
+            <input id="password" class='lf--input' placeholder='Password' type='password' name="password" required>
         </div>
         <div class="flex-row">
             <label class="lf--label" for="passwordConfirm">Confirm Password: </label>
-            <input id="passwordConfirm" class='lf--input' placeholder='ConfirmPassword' type= "confirmPassword">
+            <input id="passwordConfirm" class='lf--input' placeholder='ConfirmPassword' type= "confirmPassword" onkeyup="validatePassword()" required>
         </div>
         <div class='button'>
+            <input class='lf--login' type='button' value='Login'>
             <input class='lf--register' type='button' value='Register'>
         </div>
     </form>
+    <script>
+        function validatePassword() {
+            var newPassword = document.getElementById("newPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var errorMessageElement = document.getElementById("errorMessage");
+    
+            if (newPassword !== confirmPassword) {
+                errorMessageElement.innerText = "Passwords do not match!";
+            } else {
+                errorMessageElement.innerText = ""; // Clear error message
+            }
+        }
+    </script>
 </body>
 </html>

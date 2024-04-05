@@ -1,1 +1,29 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Final Project</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body class="wrapper">
+    <header id="header">
+    </header>
+    <form class="signup-form" method="POST" action="signup.php"> 
+        <div class="flex-row">
+            <label class="lf--label" for="username">Username: </label>
+            <input id="username" class='lf--input' placeholder='Username' type='text' name="username">
+        </div>
+        <div class="flex-row">
+            <label class="lf--label" for="password">Password: </label>
+            <input id="password" class='lf--input' placeholder='Password' type='password' name="password">
+        </div>
+        <div class="flex-row">
+            <label class="lf--label" for="passwordConfirm">Confirm Password: </label>
+            <input id="passwordConfirm" class='lf--input' placeholder='ConfirmPassword' type= "confirmPassword">
+        </div>
+        <div class='button'>
+            <input class='lf--register' type='button' value='Register'>
+        </div>
+    </form>
+</body>
+</html>

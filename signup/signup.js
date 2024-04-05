@@ -45,24 +45,12 @@ document.getElementById("signup-form").addEventListener("submit", function(event
         });
     } else {
         // Submit the form if no errors
-        document.getElementById("signup-form").submit();
+        // user gets sent to the main page once sign up is complete
+        window.location.href = "game1.php"; 
     }
 });
 
-// AJAX for real-time validation
-document.getElementById("username").addEventListener("keyup", function() {
-    var username = this.value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "validate_username.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("error-messages").innerHTML = xhr.responseText;
-        }
-    };
-    xhr.send("username=" + username);
-});
-
+// Function to validate password
 function validatePassword() {
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmPassword").value;

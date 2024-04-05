@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    color: #333; /* Default text color */
+    background-color: #94fcfc; /* Default background color */
+    margin:0;
+    padding: 0;
+}
+/* Wrapper div for content */
+.wrapper {
+    width: auto;
+    margin: 0 auto;
+    border-width: 100px;
+    border-color: #333;
+}
+/* Header styles */
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+/* Basic styles for the form */
+.signup-form {
+    width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+/* Styles for flex layout */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Label styles */
+.lf--label {
+    width: 100px; /* Adjust as needed */
+    font-weight: bold;
+}
+
+/* Input styles */
+.lf--input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* Button container */
+.button {
+    text-align: center;
+}
+
+/* Register button */
+.lf--register {
+    background-color: #e73232;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* Login button */
+.lf--login {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* Styling on hover for buttons */
+.lf--login:hover,
+.lf--register:hover {
+    opacity: 0.8;
+}

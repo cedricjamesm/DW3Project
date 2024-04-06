@@ -1,28 +1,44 @@
+<?php
+session_start();
+
+// Check for error message from previous login attempt
+$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
+unset($_SESSION['error_message']); // Clear the error message to prevent it from displaying multiple times
+
+// Retrieve previously entered username from session
+$username = isset($_SESSION['previous_username']) ? $_SESSION['previous_username'] : "";
+
+// Clear previously entered username from session
+unset($_SESSION['previous_username']);
+
+// Clear previously entered password from session (for security reasons, do not store passwords in sessions)
+unset($_SESSION['previous_password']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Final Project</title>
-    <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
-<body class="wrapper">
-    <header id="header">
-        <p>WEB SERVER APPLICATION DEVELOPMENT 1 / Final Project / Team 2</p>
-    </header>
-    <form class="login-form" method="POST" action="login/login.php"> 
-        <div class="flex-row">
-            <label class="lf--label" for="username">Username: </label>
-            <input id="username" class='lf--input' placeholder='Username' type='text' name="username">
-        </div>
-        <div class="flex-row">
-            <label class="lf--label" for="password">Password: </label>
-            <input id="password" class='lf--input' placeholder='Password' type='password' name="password">
-        </div>
-        <div class='button'>
-            <input class='lf--login' type='submit' value='Submit'>
-            <input class='lf--register' type='button' value='Register' onclick="window.location.href='signup.html';">
-            <input class='lf--forgot' type='button' value='Forgot Password' onclick="window.location.href='change_password.html';">
-        </div>
+<body>
+    <h1>Login Form</h1>
+    <?php if ($error_message !== ""): ?>
+        <p><?php echo $error_message; ?></p>
+    <?php endif; ?>
+    <form action="login/Login.php" method="post">
+        <label for="username">Username:</label>
+        <!-- Populate input field with previously entered username -->
+        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit" name="login">Login</button>
+        <!-- Make the registration button a link -->
+        <a href="registration.php">Register</a>
     </form>
+    <!-- Link to prompt user for password change -->
+    <p><a href="forgot_password.php">Forgot your password? Change it.</a></p>
 </body>
 </html>

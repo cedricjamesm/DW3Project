@@ -1,8 +1,8 @@
 <?php
 // Database configuration
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "root"; // Database username
+$password = ""; // Database password
 $dbname = "kidsGames";
 
 // Create database connection
@@ -14,45 +14,49 @@ if ($conn->connect_error) {
 }
 
 // Retrieve user input
-$username = $_POST['username'];
-$firstName = $_POST['firstName'];
-$lastName = $_POST['lastName'];
-$password = $_POST['password'];
-$confirmPassword = $_POST['confirmPassword'];
+$userInputUsername = $_POST['username'];
+$userInputFirstName = $_POST['firstName'];
+$userInputLastName = $_POST['lastName'];
+$userInputPassword = $_POST['password'];
+$userInputConfirmPassword = $_POST['confirmPassword'];
 
 // Validate input and match passwords
-if (empty($username) || empty($firstName) || empty($lastName) || empty($password) || empty($confirmPassword)) {
+if (empty($userInputUsername) || empty($userInputFirstName) || empty($userInputLastName) || empty($userInputPassword) || empty($userInputConfirmPassword)) {
     echo "All fields are required.";
     exit;
 }
 
-if ($password !== $confirmPassword) {
+if ($userInputPassword !== $userInputConfirmPassword) {
     echo "Passwords do not match.";
     exit;
 }
 
 // Hash the password
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+$passwordHash = password_hash($userInputPassword, PASSWORD_DEFAULT);
 
-// Check if username already exists
-$sql = "SELECT id FROM your_table_name WHERE username = '$username'";
-$result = $conn->query($sql);
-
+// Check if username already exists using prepared statements
+$stmt = $conn->prepare("SELECT id FROM player WHERE userName = ?");
+$stmt->bind_param("s", $userInputUsername);
+$stmt->execute();
+$result = $stmt->get_result();
 if ($result->num_rows > 0) {
     echo "Username already exists.";
-} else {
-    // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO your_table_name (username, first_name, last_name, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $username, $firstName, $lastName, $passwordHash);
-
-    // Execute and check
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
     $stmt->close();
+    $conn->close();
+    exit;
+}
+// Username does not exist, continue with insert
+$stmt = $conn->prepare("INSERT INTO player (userName, fName, lName, passCode) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $userInputUsername, $userInputFirstName, $userInputLastName, $passwordHash);
+
+// Execute and check
+if ($stmt->execute()) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $stmt->error;
 }
 
+// Close statement and connection
+$stmt->close();
 $conn->close();
 ?>

@@ -36,9 +36,9 @@ unset($_SESSION['previous_password']);
         <input type="password" id="password" name="password" required><br><br>
         <button type="submit" name="login">Login</button>
         <!-- Make the registration button a link -->
-        <a href="registration.php">Register</a>
+        <a href="signup/signup.html">Register</a>
     </form>
     <!-- Link to prompt user for password change -->
-    <p><a href="forgot_password.php">Forgot your password? Change it.</a></p>
+    <p><a href="change_password/change_password.html">Forgot your password? Change it.</a></p>
 </body>
 </html>

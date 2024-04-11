@@ -28,7 +28,7 @@ unset($_SESSION['previous_password']);
     <?php if ($error_message !== ""): ?>
         <p><?php echo $error_message; ?></p>
     <?php endif; ?>
-    <form action="../login/Login.php" method="post">
+    <form action="login/Login.php" method="post">
         <label for="username">Username:</label>
         <!-- Populate input field with previously entered username -->
         <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required><br><br>

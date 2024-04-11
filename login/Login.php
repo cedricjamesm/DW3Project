@@ -37,14 +37,14 @@ if (isset($_POST['login'])) {
         if (password_verify($psw, $hashed_password)) {
             // Username and password are correct, start session
             $_SESSION['username'] = $name;
-            header("Location: DisconnectForm.php");
+            header("Location: homepage.html");
             exit();
         }
     }
 
     // Incorrect username or password, redirect back to login form with error message
     $_SESSION['error_message'] = "Incorrect username or password!\nPassword: $psw\nUsername: $name";
-    header("Location: LoginForm.php");
+    header("Location: login.php");
     exit();
 }
 

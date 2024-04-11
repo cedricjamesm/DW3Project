@@ -44,7 +44,7 @@ if (isset($_POST['login'])) {
 
     // Incorrect username or password, redirect back to login form with error message
     $_SESSION['error_message'] = "Incorrect username or password!\nPassword: $psw\nUsername: $name";
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 

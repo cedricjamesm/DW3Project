@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-    H1,
-    h2 {
-        text-align: center;
-    }
-
-    .form6 {
-        width: 50%;
-        margin: 0 auto;
-        border: 2px solid black;
-        box-sizing: border-box;
-        text-align: center;
-        border-color: pink;
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Games</title>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -47,7 +32,7 @@
         function generateRandomNumbers() {
             var numbers = [];
             for (var i = 0; i < 6; i++) {
-                numbers.push(Math.floor(Math.random() * 100) + 1); 
+                numbers.push(Math.floor(Math.random() * 100) + 1);
             }
 
             var smallestNumber = Math.min(...numbers);
@@ -72,8 +57,8 @@
             }
         }
         function decrementLives() {
-            lives--; 
-            document.getElementById('lives').textContent = lives; 
+            lives--;
+            document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives);
             if (lives === 0) {
                 alert("Game Over. You have run out of lives.");
@@ -82,8 +67,8 @@
         }
 
         function cancelGame() {
-            lives = 6; 
-            document.getElementById('lives').textContent = lives; 
+            lives = 6;
+            document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");
             window.location.href = '../homepage.html';

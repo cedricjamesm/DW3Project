@@ -13,7 +13,7 @@
     <h2>HERE'S THE FIRST GAME</h2>
 
     <div class="form1">
-        <p>Lives: <span id="lives">6</span></p> 
+        <p>Lives: <span id="lives">6</span></p>
         <form name="myForm1" action="GET">
             <label for="question1">Question 1. Order the 6 following letters in ascending order!</label><br>
             <label>Use the following format AAAAAA</label><br>
@@ -21,13 +21,13 @@
 
             <input type="text" id="game1" name="question1" placeholder="Write here"><br>
             <button type="button" onclick="checkSorting()">Submit</button>
-            <button type="button" onclick="cancelGame()">Cancel</button> 
+            <button type="button" onclick="cancelGame()">Cancel</button>
         </form>
     </div>
 
     <script>
         var lives = parseInt(sessionStorage.getItem('lives')) || 6;
-        document.getElementById('lives').textContent = lives; 
+        document.getElementById('lives').textContent = lives;
 
         function generateRandomLetters() {
             var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -35,7 +35,7 @@
             for (var i = 0; i < 6; i++) {
                 var randomIndex = Math.floor(Math.random() * letters.length);
                 selectedLetters += letters[randomIndex];
-                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1); 
+                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1);
             }
             return selectedLetters;
         }
@@ -49,14 +49,14 @@
                 window.location.href = 'game2.php';
             } else {
                 alert("Sorry, the order is incorrect. Please try again.");
-                decrementLives(); 
+                decrementLives();
             }
         }
 
         function decrementLives() {
             lives--;
             document.getElementById('lives').textContent = lives;
-            sessionStorage.setItem('lives', lives); 
+            sessionStorage.setItem('lives', lives);
             if (lives === 0) {
                 alert("Game Over. You have run out of lives.");
                 window.location.href = '../homepage.html';

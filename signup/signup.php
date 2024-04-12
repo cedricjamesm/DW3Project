@@ -62,13 +62,15 @@ if ($stmtPlayer->execute()) {
 
     // Execute and check
     if ($stmtAuthenticator->execute()) {
-        echo "New record created successfully";
+        // Close the authenticator statement
+        $stmtAuthenticator->close();
+        
+        // Redirect to index.php
+        header("Location: ../index.php");
+        exit;
     } else {
         echo "Error: " . $stmtAuthenticator->error;
     }
-
-    // Close the authenticator statement
-    $stmtAuthenticator->close();
 } else {
     echo "Error: " . $stmtPlayer->error;
 }
@@ -76,4 +78,3 @@ if ($stmtPlayer->execute()) {
 // Close player statement and connection
 $stmtPlayer->close();
 $conn->close();
-?>

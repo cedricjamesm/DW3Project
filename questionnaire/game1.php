@@ -54,6 +54,7 @@
         }
 
         function decrementLives() {
+            lives--;
             document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives); 
             if (lives === 0) {

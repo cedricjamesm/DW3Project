@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
         if (password_verify($psw, $hashed_password)) {
             // Username and password are correct, start session
             $_SESSION['username'] = $name;
-            header("Location: homepage.html");
+            header("Location: ../homepage.html");
             exit();
         }
     }
@@ -50,4 +50,3 @@ if (isset($_POST['login'])) {
 
 // Close connection
 $conn->close();
-?>

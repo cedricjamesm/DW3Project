@@ -13,7 +13,7 @@
     <h2>HERE'S THE SECOND GAME</h2>
 
     <div class="form2">
-        <p>Lives: <span id="lives">6</span></p> <!-- Display Lives -->
+        <p>Lives: <span id="lives">6</span></p> 
         <form name="myForm2" action="GET">
             <label for="question2">Question 2. Order the 6 following letters in descending order!</label><br>
             <label>Use the following format AAAAAA</label><br>
@@ -21,7 +21,7 @@
 
             <input type="text" id="game2" name="question2" placeholder="Write here"><br>
             <button type="button" onclick="checkSorting()">Submit</button>
-            <button type="button" onclick="cancelGame()">Cancel</button> <!-- Call cancelGame function -->
+            <button type="button" onclick="cancelGame()">Cancel</button> 
         </form>
     </div>
 

@@ -1,26 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<style>
-    H1,
-    h2 {
-        text-align: center;
-    }
-
-    .form4 {
-        width: 50%;
-        margin: 0 auto;
-        border: 2px solid black;
-        box-sizing: border-box;
-        text-align: center;
-        border-color: orange;
-
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Games</title>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>

@@ -46,30 +46,23 @@
 
         function generateRandomNumbers() {
             var numbers = [];
-            // Generate random numbers from 1 to 100
             for (var i = 1; i <= 100; i++) {
                 numbers.push(i);
             }
-            // Shuffle the numbers
             for (var i = numbers.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
-                [numbers[i], numbers[j]] = [numbers[j], numbers[i]]; // Swap elements
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]]; 
             }
-            // Select the first 6 numbers
             return numbers.slice(0, 6);
         }
 
         function checkSorting() {
-            // Get the input value
             var userInput = document.getElementById('game3').value.trim();
 
-            // Get the correct order without commas
             var correctOrder = document.getElementById('letterOrder').textContent;
 
-            // Get the sorted correct order
             var sortedOrder = correctOrder.split(',').map(Number).sort((a, b) => a - b).join(' ');
 
-            // Check if the user input matches the sorted correct order
             if (userInput === sortedOrder) {
                 alert("Congratulations! You sorted the numbers correctly. ");
                 window.location.href = 'game4.php';

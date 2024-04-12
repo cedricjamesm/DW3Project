@@ -43,10 +43,8 @@
         var lives = parseInt(sessionStorage.getItem('lives')) || 6;
         document.getElementById('lives').textContent = lives;
 
-        // Variable to store the correct order
         var correctOrder;
 
-        // Function to generate random letters
         function generateRandomLetters() {
             var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             var randomLetters = '';
@@ -63,7 +61,6 @@
 
         function checkSorting() {
             var userInput = document.getElementById('game5').value.trim().toUpperCase();
-            // Use the stored correct order for comparison
             if (userInput === correctOrder) {
                 alert("Congratulations! You sorted the letters correctly. ");
                 window.location.href = 'game6.php';
@@ -92,7 +89,7 @@
         }
 
         window.onload = function () {
-            generateRandomLetters(); // Generate the random order when the page loads
+            generateRandomLetters(); 
         };
     </script>
 

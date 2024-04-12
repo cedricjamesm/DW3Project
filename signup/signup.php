@@ -35,7 +35,7 @@ if ($userInputPassword !== $userInputConfirmPassword) {
 $passwordHash = password_hash($userInputPassword, PASSWORD_DEFAULT);
 
 // Check if username already exists using prepared statements
-$stmt = $conn->prepare("SELECT id FROM player WHERE userName = ?");
+$stmt = $conn->prepare("SELECT registrationOrder FROM player WHERE userName = ?");
 $stmt->bind_param("s", $userInputUsername);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -45,18 +45,35 @@ if ($result->num_rows > 0) {
     $conn->close();
     exit;
 }
-// Username does not exist, continue with insert
-$stmt = $conn->prepare("INSERT INTO player (userName, fName, lName, passCode) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $userInputUsername, $userInputFirstName, $userInputLastName, $passwordHash);
+$stmt->close();
+
+// Prepare the statement to insert the player
+$stmtPlayer = $conn->prepare("INSERT INTO player (fName, lName, userName, registrationTime) VALUES (?, ?, ?, NOW())");
+$stmtPlayer->bind_param("sss", $userInputFirstName, $userInputLastName, $userInputUsername);
 
 // Execute and check
-if ($stmt->execute()) {
-    echo "New record created successfully";
+if ($stmtPlayer->execute()) {
+    // Get the registrationOrder of the last inserted player
+    $registrationOrder = $conn->insert_id;
+
+    // Prepare the statement to insert the password hash into authenticator
+    $stmtAuthenticator = $conn->prepare("INSERT INTO authenticator (passCode, registrationOrder) VALUES (?, ?)");
+    $stmtAuthenticator->bind_param("si", $passwordHash, $registrationOrder);
+
+    // Execute and check
+    if ($stmtAuthenticator->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmtAuthenticator->error;
+    }
+
+    // Close the authenticator statement
+    $stmtAuthenticator->close();
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error: " . $stmtPlayer->error;
 }
 
-// Close statement and connection
-$stmt->close();
+// Close player statement and connection
+$stmtPlayer->close();
 $conn->close();
 ?>

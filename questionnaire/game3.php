@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+    H1,
+    h2 {
+        text-align: center;
+    }
+
+    .form3 {
+        width: 50%;
+        margin: 0 auto;
+        border: 2px solid black;
+        box-sizing: border-box;
+        text-align: center;
+        border-color: purple;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Games</title>
-    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -11,6 +27,7 @@
     <h2>HERE'S THE THIRD GAME</h2>
 
     <div class="form3">
+        <p>Lives: <span id="lives">6</span></p>
         <form name="myForm3" action="GET">
             <label for="question3">Question 3. Order the 6 following numbers in ascending order!</label><br>
             <label>Use the following format 00 00 00 00 00 00. For double digits use 00 for single digit use
@@ -19,11 +36,14 @@
 
             <input type="text" id="game3" name="question3" placeholder="Write here"><br>
             <button type="button" onclick="checkSorting()">Submit</button>
-            <button type="button"> Cancel </button>
+            <button type="button" onclick="cancelGame()">Cancel</button>
         </form>
     </div>
 
     <script>
+        var lives = parseInt(sessionStorage.getItem('lives')) || 6;
+        document.getElementById('lives').textContent = lives;
+
         function generateRandomNumbers() {
             var numbers = [];
             // Generate random numbers from 1 to 100
@@ -55,10 +75,27 @@
                 window.location.href = 'game4.php';
             } else {
                 alert("Sorry, the order is incorrect. Please try again. ");
+                decrementLives();
+            }
+        }
+        function decrementLives() {
+            lives--;
+            document.getElementById('lives').textContent = lives;
+            sessionStorage.setItem('lives', lives);
+            if (lives === 0) {
+                alert("Game Over. You have run out of lives.");
+                window.location.href = '../homepage.html';
             }
         }
 
-        // Generate random numbers on page load
+        function cancelGame() {
+            lives = 3;
+            document.getElementById('lives').textContent = lives;
+            sessionStorage.setItem('lives', lives);
+            alert("Thank you for playing. Hope we can see you soon!");
+            window.location.href = '../homepage.html';
+        }
+
         window.onload = function () {
             var randomNumbers = generateRandomNumbers();
             document.getElementById('letterOrder').textContent = randomNumbers.join(', ');

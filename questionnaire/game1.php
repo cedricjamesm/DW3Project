@@ -4,21 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Game 1</title>
-    <style>
-        h1,
-        h2 {
-            text-align: center;
-        }
 
-        .form1 {
-            width: 50%;
-            margin: 0 auto;
-            border: 2px solid black;
-            box-sizing: border-box;
-            text-align: center;
-            border-color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -56,7 +43,7 @@
         function checkSorting() {
             var userInput = document.getElementById('game1').value.trim().toUpperCase();
             var correctOrder = document.getElementById('letterOrder').textContent.split(',').join('').split('').sort().join('').trim();
-            
+
             if (userInput === correctOrder) {
                 alert("Congratulations! You sorted the letters correctly.");
                 window.location.href = 'game2.php';
@@ -76,9 +63,9 @@
         }
 
         function cancelGame() {
-            lives = 6; 
-            document.getElementById('lives').textContent = lives; 
-            sessionStorage.setItem('lives', lives); 
+            lives = 6;
+            document.getElementById('lives').textContent = lives;
+            sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");
             window.location.href = '../homepage.html';
         }

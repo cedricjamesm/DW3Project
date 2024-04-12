@@ -45,30 +45,24 @@
         var correctOrder;
 
         function generateRandomNumbers() {
-            // Generate random numbers
             var numbers = [];
             for (var i = 0; i < 6; i++) {
-                numbers.push(Math.floor(Math.random() * 100) + 1); // Random numbers from 1 to 100
+                numbers.push(Math.floor(Math.random() * 100) + 1); 
             }
 
-            // Get the smallest and largest numbers
             var smallestNumber = Math.min(...numbers);
             var largestNumber = Math.max(...numbers);
 
-            // Construct the correct order string
             correctOrder = smallestNumber + ' ' + largestNumber;
 
-            // Set the random numbers as the displayed order
             document.getElementById('numberOrder').textContent = numbers.join(' ');
 
             return correctOrder;
         }
 
         function checkSorting() {
-            // Get the input value
             var userInput = document.getElementById('game6').value.trim();
 
-            // Check if the user input matches the correct order
             if (userInput === correctOrder) {
                 alert("Congratulations! You sorted the numbers correctly and have won the game!!!!! ");
                 window.location.href = '../homepage.html';
@@ -78,25 +72,22 @@
             }
         }
         function decrementLives() {
-            lives--; // Decrement lives counter
-            document.getElementById('lives').textContent = lives; // Update lives display
+            lives--; 
+            document.getElementById('lives').textContent = lives; 
             sessionStorage.setItem('lives', lives);
             if (lives === 0) {
                 alert("Game Over. You have run out of lives.");
                 window.location.href = '../homepage.html';
-                // You can add redirection to a game over page or any other action here
             }
         }
 
         function cancelGame() {
-            lives = 6; // Reset lives counter
-            document.getElementById('lives').textContent = lives; // Update lives display
+            lives = 6; 
+            document.getElementById('lives').textContent = lives; 
             sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");
             window.location.href = '../homepage.html';
-            // You can add any other reset logic here
         }
-        // Generate random numbers on page load
         window.onload = function () {
             generateRandomNumbers();
         };

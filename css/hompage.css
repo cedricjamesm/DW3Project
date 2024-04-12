@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global Styles */
+body {
+    font-family: 'Jost', sans-serif; /* Use Jost font */
+    background-color: #f8f8f8; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #ff9f9f; /* Light pink header */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 0 0 30px 30px; /* Rounded corners */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px; /* Larger font size */
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #ffd369; /* Yellow navigation background */
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 15px; /* Rounded corners */
+}
+
+nav a {
+    color: #333; /* Dark text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px; /* Add space between links */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+nav a:hover {
+    background-color: #ff9f9f; /* Light pink on hover */
+}

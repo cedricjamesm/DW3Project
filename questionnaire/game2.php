@@ -4,21 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Game 2</title>
-    <style>
-        h1,
-        h2 {
-            text-align: center;
-        }
 
-        .form2 {
-            width: 50%;
-            margin: 0 auto;
-            border: 2px solid black;
-            box-sizing: border-box;
-            text-align: center;
-            border-color: blue;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -40,7 +27,7 @@
 
     <script>
         var lives = parseInt(sessionStorage.getItem('lives')) || 6;
-        document.getElementById('lives').textContent = lives; 
+        document.getElementById('lives').textContent = lives;
 
         function generateRandomLetters() {
             var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -48,7 +35,7 @@
             for (var i = 0; i < 6; i++) {
                 var randomIndex = Math.floor(Math.random() * letters.length);
                 selectedLetters += letters[randomIndex];
-                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1); 
+                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1);
             }
             return selectedLetters;
         }
@@ -68,7 +55,7 @@
         }
 
         function decrementLives() {
-            lives--; 
+            lives--;
             document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives);
             if (lives === 0) {
@@ -79,8 +66,8 @@
 
         function cancelGame() {
             lives = 6; // Reset lives counter
-            document.getElementById('lives').textContent = lives; 
-            sessionStorage.setItem('lives', lives); 
+            document.getElementById('lives').textContent = lives;
+            sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");
             window.location.href = '../homepage.html';
         }

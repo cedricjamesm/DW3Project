@@ -1,25 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-    H1,
-    h2 {
-        text-align: center;
-    }
-
-    .form3 {
-        width: 50%;
-        margin: 0 auto;
-        border: 2px solid black;
-        box-sizing: border-box;
-        text-align: center;
-        border-color: purple;
-    }
-</style>
 
 <head>
     <meta charset="UTF-8">
     <title>Games</title>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -51,7 +37,7 @@
             }
             for (var i = numbers.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
-                [numbers[i], numbers[j]] = [numbers[j], numbers[i]]; 
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
             }
             return numbers.slice(0, 6);
         }
@@ -82,7 +68,7 @@
         }
 
         function cancelGame() {
-            lives = 3;
+            lives = 6;
             document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");

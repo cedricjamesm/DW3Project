@@ -65,7 +65,7 @@
         }
 
         function cancelGame() {
-            lives = 6; // Reset lives counter
+            lives = 6; 
             document.getElementById('lives').textContent = lives;
             sessionStorage.setItem('lives', lives);
             alert("Thank you for playing. Hope we can see you soon!");

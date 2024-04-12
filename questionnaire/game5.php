@@ -65,7 +65,7 @@
                 alert("Congratulations! You sorted the letters correctly. ");
                 window.location.href = 'game6.php';
             } else {
-                alert("Sorry, the order is incorrect. Please try again. " + correctOrder);
+                alert("Sorry, the order is incorrect. Please try again. ");
                 decrementLives();
             }
         }

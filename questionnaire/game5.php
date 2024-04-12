@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-    H1,
-    h2 {
-        text-align: center;
-    }
-
-    .form5 {
-        width: 50%;
-        margin: 0 auto;
-        border: 2px solid black;
-        box-sizing: border-box;
-        text-align: center;
-        border-color: green;
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Games</title>
+    <link rel="stylesheet" href="../css/games.css">
 </head>
 
 <body>
@@ -89,7 +74,7 @@
         }
 
         window.onload = function () {
-            generateRandomLetters(); 
+            generateRandomLetters();
         };
     </script>
 

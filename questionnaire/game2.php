@@ -39,60 +39,52 @@
     </div>
 
     <script>
-        // Initialize lives counter from sessionStorage or default to 3
         var lives = parseInt(sessionStorage.getItem('lives')) || 6;
-        document.getElementById('lives').textContent = lives; // Update lives display
+        document.getElementById('lives').textContent = lives; 
 
         function generateRandomLetters() {
             var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             var selectedLetters = '';
-            // Select 6 unique random letters
             for (var i = 0; i < 6; i++) {
                 var randomIndex = Math.floor(Math.random() * letters.length);
                 selectedLetters += letters[randomIndex];
-                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1); // Remove selected letter
+                letters = letters.slice(0, randomIndex) + letters.slice(randomIndex + 1); 
             }
             return selectedLetters;
         }
 
         function checkSorting() {
-            // Get the input value
             var userInput = document.getElementById('game2').value.trim().toUpperCase();
 
-            // Get the correct order without commas
             var correctOrder = document.getElementById('letterOrder').textContent.split(',').join('').split('').sort().reverse().join('').trim();
 
-            // Check if the user input matches the correct order
             if (userInput === correctOrder) {
                 alert("Congratulations! You sorted the letters correctly.");
                 window.location.href = 'game3.php';
             } else {
                 alert("Sorry, the order is incorrect. Please try again.");
-                decrementLives(); // Decrement lives if answer is wrong
+                decrementLives();
             }
         }
 
         function decrementLives() {
-            lives--; // Decrement lives counter
-            document.getElementById('lives').textContent = lives; // Update lives display
-            sessionStorage.setItem('lives', lives); // Store lives count in sessionStorage
+            lives--; 
+            document.getElementById('lives').textContent = lives;
+            sessionStorage.setItem('lives', lives);
             if (lives === 0) {
                 alert("Game Over. You have run out of lives.");
                 window.location.href = '../homepage.html';
-                // You can add redirection to a game over page or any other action here
             }
         }
 
         function cancelGame() {
             lives = 6; // Reset lives counter
-            document.getElementById('lives').textContent = lives; // Update lives display
-            sessionStorage.setItem('lives', lives); // Store lives count in sessionStorage
+            document.getElementById('lives').textContent = lives; 
+            sessionStorage.setItem('lives', lives); 
             alert("Thank you for playing. Hope we can see you soon!");
             window.location.href = '../homepage.html';
-            // You can add any other reset logic here
         }
 
-        // Generate random letters on page load
         window.onload = function () {
             var randomLetters = generateRandomLetters();
             document.getElementById('letterOrder').textContent = randomLetters.split('').join(', ');

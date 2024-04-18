@@ -46,7 +46,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     } else {
         // Submit the form if no errors
         // user gets sent to the main page once sign up is complete
-        window.location.href = "game1.php"; 
+        window.location.href = "index.php"; 
     }
 });
 

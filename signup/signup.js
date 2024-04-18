@@ -52,20 +52,25 @@ document.getElementById("signup-form").addEventListener("submit", function(event
 // Function to submit the signup form data via AJAX
 function submitSignupForm() {
     var formData = new FormData(document.getElementById('signup-form'));
-
     fetch('signup.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
-            window.location.href = '../DW3Project-main/index.php';  // Redirect on success
+            window.location.href = '../DW3Project-main/index.php';
         } else {
             document.getElementById('error-messages').innerHTML = "<p>" + data.message + "</p>";
         }
     })
     .catch(error => {
+        console.error('Error:', error);
         document.getElementById('error-messages').innerHTML = "<p>Error submitting form.</p>";
     });
 }

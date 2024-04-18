@@ -1,16 +1,16 @@
 document.getElementById("signup-form").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
     // Get form fields
     var username = document.getElementById("username").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
-    
+
     // Clear previous error messages (if any)
     document.getElementById("error-messages").innerHTML = "";
-    
+
     // Validate form fields
     var errors = [];
     if (!username.trim()) {
@@ -36,7 +36,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     } else if (password !== confirmPassword) {
         errors.push("Passwords do not match.");
     }
-    
+
     // Display error messages, if any
     if (errors.length > 0) {
         var errorMessageElement = document.getElementById("error-messages");
@@ -45,20 +45,27 @@ document.getElementById("signup-form").addEventListener("submit", function(event
         });
     } else {
         // Submit the form if no errors
-        // user gets sent to the main page once sign up is complete
-        window.location.href = "index.php"; 
+        submitSignupForm();
     }
 });
 
-// Function to validate password
-function validatePassword() {
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    var errorMessageElement = document.getElementById("error-messages");
+// Function to submit the signup form data via AJAX
+function submitSignupForm() {
+    var formData = new FormData(document.getElementById('signup-form'));
 
-    if (password !== confirmPassword) {
-        errorMessageElement.innerHTML = "<p>Passwords do not match.</p>";
-    } else {
-        errorMessageElement.innerHTML = ""; // Clear error message
-    }
+    fetch('signup.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = '../DW3Project-main/index.php';  // Redirect on success
+        } else {
+            document.getElementById('error-messages').innerHTML = "<p>" + data.message + "</p>";
+        }
+    })
+    .catch(error => {
+        document.getElementById('error-messages').innerHTML = "<p>Error submitting form.</p>";
+    });
 }

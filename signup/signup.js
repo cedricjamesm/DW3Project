@@ -1,59 +1,50 @@
 document.getElementById("signup-form").addEventListener("submit", function(event) {
     event.preventDefault();
+    var errorContainer = document.getElementById("error-messages");
+    errorContainer.innerHTML = "";  // Clear previous error messages
 
-    // Get form fields
-    var username = document.getElementById("username").value;
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
+    // Gather form data
+    var formData = new FormData(document.getElementById('signup-form'));
+    var errors = validateFormData(formData);
 
-    // Clear previous error messages (if any)
-    document.getElementById("error-messages").innerHTML = "";
-
-    // Validate form fields
-    var errors = [];
-    if (!username.trim()) {
-        errors.push("Please enter a username.");
-    } else if (!/^[a-zA-Z]+$/.test(username)) {
-        errors.push("username must start with a letter.");
-    }
-    if (!firstName.trim()) {
-        errors.push("Please enter your first name.");
-    } else if (!/^[a-zA-Z]+$/.test(firstName)) {
-        errors.push("First name must start with a letter.");
-    }
-    if (!lastName.trim()) {
-        errors.push("Please enter your last name.");
-    } else if (!/^[a-zA-Z]+$/.test(lastName)) {
-        errors.push("Last name must start with a letter.");
-    }
-    if (!password.trim()) {
-        errors.push("Please enter a password.");
-    } else if (password.length < 8) {
-        errors.push("Password must contain at least 8 characters.");
-    }
-    if (!confirmPassword.trim()) {
-        errors.push("Please confirm your password.");
-    } else if (password !== confirmPassword) {
-        errors.push("Passwords do not match.");
-    }
-
-    // Display error messages, if any
+    // Display error messages or submit the form
     if (errors.length > 0) {
-        var errorMessageElement = document.getElementById("error-messages");
         errors.forEach(function(error) {
-            errorMessageElement.innerHTML += "<p>" + error + "</p>";
+            errorContainer.innerHTML += "<p>" + error + "</p>";
         });
     } else {
-        // Submit the form if no errors
-        submitSignupForm();
+        submitSignupForm(formData);
     }
 });
 
-// Function to submit the signup form data via AJAX
-function submitSignupForm() {
-    var formData = new FormData(document.getElementById('signup-form'));
+function validateFormData(formData) {
+    var errors = [];
+    var username = formData.get('username');
+    var firstName = formData.get('firstName');
+    var lastName = formData.get('lastName');
+    var password = formData.get('password');
+    var confirmPassword = formData.get('confirmPassword');
+
+    // Validation logic
+    if (!username || !/^[a-zA-Z]+$/.test(username)) {
+        errors.push("Username must start with a letter and cannot be empty.");
+    }
+    if (!firstName || !/^[a-zA-Z]+$/.test(firstName)) {
+        errors.push("First name must start with a letter and cannot be empty.");
+    }
+    if (!lastName || !/^[a-zA-Z]+$/.test(lastName)) {
+        errors.push("Last name must start with a letter and cannot be empty.");
+    }
+    if (!password || password.length < 8) {
+        errors.push("Password must contain at least 8 characters.");
+    }
+    if (password !== confirmPassword) {
+        errors.push("Passwords do not match.");
+    }
+    return errors;
+}
+
+function submitSignupForm(formData) {
     fetch('signup.php', {
         method: 'POST',
         body: formData
@@ -66,7 +57,7 @@ function submitSignupForm() {
     })
     .then(data => {
         if (data.success) {
-            window.location.href = '../DW3Project-main/index.php';
+            window.location.href = 'index.html';  // Adjust the redirect path as needed
         } else {
             document.getElementById('error-messages').innerHTML = "<p>" + data.message + "</p>";
         }

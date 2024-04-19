@@ -15,6 +15,8 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     var errors = [];
     if (!username.trim()) {
         errors.push("Please enter a username.");
+    } else if (!/^[a-zA-Z]+$/.test(username)) {
+        errors.push("username must start with a letter.");
     }
     if (!firstName.trim()) {
         errors.push("Please enter your first name.");

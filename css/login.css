@@ -68,3 +68,12 @@ a:hover {
 p{
     text-align: center;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #ddd; 
+    padding: 10px 0; 
+    text-align: center;
+}

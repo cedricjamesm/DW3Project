@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global Styles */
+body {
+    font-family: 'Jost', sans-serif; /* Use Jost font */
+    background-color: #f8f8f8; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #ff9f9f; /* Light pink header */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 0 0 30px 30px; /* Rounded corners */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px; /* Larger font size */
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #ffd369; /* Yellow navigation background */
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 15px; /* Rounded corners */
+}
+
+nav a {
+    color: #333; /* Dark text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px; /* Add space between links */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+nav a:hover {
+    background-color: #ff9f9f; /* Light pink on hover */
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* Centered container */
+/* Container Styles */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* About Content Styles */
+.about-content {
+    padding: 20px;
+    background-color: #fff; /* White background */
+    margin-top: 20px;
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-size: 18px; /* Larger font size */
+    line-height: 1.5; /* Increased line height */
+    color: #555; /* Dark gray text color */
+    max-width: 600px; /* Limit content width */
+    margin: 20px auto; /* Center content horizontally */
+}
+
+.about-content h2 {
+    margin-top: 0;
+    font-size: 24px; /* Larger font size */
+    color: #ff6b6b; /* Red heading color */
+}

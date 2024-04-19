@@ -57,7 +57,7 @@ function submitSignupForm(formData) {
     })
     .then(data => {
         if (data.success) {
-            window.location.href = 'index.php';
+            window.location.href = '../index.php';
         } else {
             document.getElementById('error-messages').innerHTML = "<p>" + data.message + "</p>";
         }

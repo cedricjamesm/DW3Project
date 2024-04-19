@@ -42,5 +42,9 @@ unset($_SESSION['previous_password']);
     </form>
     <!-- Link to prompt user for password change -->
     <p><a href="change_password/change_password.html">Forgot your password? Change it.</a></p>
+
+    <footer>
+        <p>Team: Cedric Mapilisan, Jakub Grabkowski, Jordan Artzy-McCendie, Jerwinson-Flores Cunanan</p>
+    </footer>
 </body>
 </html>

@@ -1,90 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Global Styles */
-body {
-    font-family: 'Jost', sans-serif; /* Use Jost font */
-    background-color: #f4f4f4;
+body.wrapper {
+    font-family: 'Jost', sans-serif; 
+    background-color: #f8f8f8; 
     margin: 0;
     padding: 0;
 }
 
-.container {
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto; 
     width: 80%;
-    margin: auto;
-    overflow: hidden;
+    max-width: 400px; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    animation: fadeIn 1s ease-in-out; /* Apply fade-in animation */
+.flex-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
-header h1 {
-    margin: 0;
-}
-
-/* Navigation Styles */
-nav {
-    background-color: #444;
-    transition: background-color 0.3s ease; /* Apply smooth transition */
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
-}
-
-nav ul li a:hover {
-    background-color: #555;
-}
-
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Form Styles */
-form {
-    margin: 20px 0;
-}
-
-form label {
-    display: block;
+.lf--label {
+    color: #333;
     margin-bottom: 5px;
 }
 
-form input[type="text"],
-form input[type="password"] {
-    width: 100%;
+.lf--input {
+    width: calc(100% - 20px); 
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border-radius: 5px; 
 }
 
-form button {
-    padding: 10px 20px;
-    background-color: #333;
- 
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.lf--register {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff9f9f; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+.lf--register:hover {
+    background-color: #ff6b6b;
+}
+
+#form-message {
+    text-align: center;
+    color: red;
+}
+
+a {
+    text-decoration: none; 
+    color: #333; 
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline; 
 }

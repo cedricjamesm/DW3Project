@@ -14,9 +14,9 @@
     <header>
         <h1>Game History</h1>
         <nav>
-            <a href="homepage.html">Home</a>
-            <a href="history.php">Game History</a>
+           <a href="homepage.html">Home</a>
             <a href="about.html">About</a>
+            <a href="history.php">Game History</a>
             <a href="login/Disconnect.php">Logout</a>
         </nav>
     </header>
